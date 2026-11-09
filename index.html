@@ -1,0 +1,1048 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nosa Omorogbe</title>
+<meta name="description" content="Nosa Omorogbe — product design + strategy. I build things at the intersection of technology + creativity, and use storytelling to make it all feel human.">
+<meta property="og:title" content="Nosa Omorogbe">
+<meta property="og:description" content="Product design + strategy. Technology, creativity and storytelling.">
+<meta property="og:image" content="portrait.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="portrait.jpg">
+<style>
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200..600;1,9..40,200..600&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@100;200&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a vertical scroll of full-screen "slides" from the Canva plan. Mood from the reference clip:
+   soft, out-of-focus white light drifting on black, film grain over everything, text that resolves out of the haze. */
+:root {
+  --ink: #000000;
+  --paper: #f5f3ef;
+  --on-ink: #ffffff;
+  --on-paper: #1a1a1a;
+  --pink: #f4a6cf;
+  --pink-deep: #e77fb6;
+  --star: #4f6bff;
+  --glow: rgba(255, 255, 255, 0.28);
+  --sans: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+/* each screen snaps into place: a small scroll glides to the next one */
+main > .slide { scroll-snap-align: start; scroll-snap-stop: always; }
+body { background: var(--ink); color: var(--on-ink); font-family: var(--sans); margin: 0; }
+
+/* ambient light field behind every dark section */
+#ambient { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+/* particle dissolve between the black thesis screen and the cream about screen */
+#dissolve { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
+main { position: relative; z-index: 1; }
+
+/* film grain over the whole page */
+.grain {
+  position: fixed; inset: -50%; width: 200%; height: 200%;
+  z-index: 50; pointer-events: none; opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(4) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); } 25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -1%); } 100% { transform: translate(0, 0); }
+}
+
+.slide {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding-block: 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  text-align: center;
+}
+.dark { color: var(--on-ink); }
+/* analog black: warm near-black, faint light fuzz, vignette, and a live film grain that boils in place */
+.dark, .subpage {
+  background-color: #0b0a09;
+  background-image:
+    var(--dark-grain, none),
+    radial-gradient(ellipse 70% 55% at 28% 18%, rgba(255, 244, 228, 0.05), transparent 62%),
+    radial-gradient(ellipse 60% 45% at 78% 88%, rgba(255, 244, 228, 0.035), transparent 60%),
+    radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+  background-size: 256px 256px, auto, auto, auto;
+  animation: analog 0.42s steps(1) infinite;
+}
+@keyframes analog {
+  0%   { background-position: 0 0, 0 0, 0 0, 0 0; }
+  25%  { background-position: -71px 43px, 0 0, 0 0, 0 0; }
+  50%  { background-position: 113px -29px, 0 0, 0 0, 0 0; }
+  75%  { background-position: -38px -97px, 0 0, 0 0, 0 0; }
+}
+@media (prefers-reduced-motion: reduce) { .dark, .subpage { animation: none; } }
+/* the intro screen is plain black; grain only fades in toward its bottom edge, meeting page 2 */
+.dark.intro { background-image: none; animation: none; }
+.dark.thesis {
+  background-image:
+    radial-gradient(ellipse 70% 55% at 28% 18%, rgba(255, 244, 228, 0.05), transparent 62%),
+    radial-gradient(ellipse 60% 45% at 78% 88%, rgba(255, 244, 228, 0.035), transparent 60%),
+    radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+  animation: none;
+}
+.intro::after { display: none; }
+/* one screen-wide grain layer: invisible on page 1, fades in as page 2 slides up, fades out into page 3 */
+#scroll-grain {
+  position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  background-image: var(--dark-grain, none); background-size: 256px 256px;
+  animation: grainOnly 0.42s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) { #scroll-grain { animation: none; } }
+.intro h1, .intro .scroll-cue { z-index: 1; }
+.intro::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: var(--dark-grain, none);
+  background-size: 256px 256px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35) 80%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35) 80%, #000 100%);
+  animation: grainOnly 0.42s steps(1) infinite;
+}
+@keyframes grainOnly {
+  0%   { background-position: 0 0; }
+  25%  { background-position: -71px 43px; }
+  50%  { background-position: 113px -29px; }
+  75%  { background-position: -38px -97px; }
+}
+@media (prefers-reduced-motion: reduce) { .intro::after { animation: none; } }
+.dark .words, .dark h1 { text-shadow: 0 0 18px rgba(255, 255, 255, 0.14); }
+.light { background: var(--paper); color: var(--on-paper); }
+
+/* non-text pieces: soft focus-in on scroll */
+.js .reveal.pending { filter: blur(16px); opacity: 0.15; transform: scale(1.03); }
+.js .reveal { transition: filter 1.6s cubic-bezier(.2,.7,.2,1), opacity 1.6s cubic-bezier(.2,.7,.2,1), transform 1.6s cubic-bezier(.2,.7,.2,1); }
+.d1 { transition-delay: .25s; }
+
+/* word-by-word: haze → focus */
+.js .w {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(18px);
+  transform: translateY(0.25em) scale(1.04);
+  transition: opacity 1.3s ease, filter 1.6s cubic-bezier(.2,.7,.2,1), transform 1.6s cubic-bezier(.2,.7,.2,1);
+  transition-delay: calc(var(--i) * 110ms + var(--base, 0ms));
+  will-change: filter, opacity;
+}
+.js .in .w { opacity: 1; filter: blur(0); transform: none; }
+
+/* 1 — intro */
+.intro h1 {
+  position: relative;
+  font-family: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2.6rem, 6.4vw, 92px);
+  font-weight: 100;
+  letter-spacing: -1px;
+  margin: 0;
+}
+#orb {
+  position: absolute; left: 50%; top: 50%;
+  width: min(620px, 92vw); aspect-ratio: 1 / 1; max-width: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* the floating, fizzing arrow */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  color: var(--on-ink); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.04em;
+}
+.scroll-cue svg { animation: bob 2.2s ease-in-out infinite; }
+/* intro arrow: fades in under the name, then slides down and sits peeking over the bottom edge */
+.intro { overflow: hidden; }
+.intro .scroll-cue {
+  bottom: calc(-18px + env(safe-area-inset-bottom, 0px));
+  animation: cueIn 3.6s 1.7s both;
+}
+/* emerges from just under the name, then glides down in one long ease */
+@keyframes cueIn {
+  0%   { opacity: 0; filter: blur(6px); transform: translate(-50%, calc(-50vh + 64px)) scale(0.92);
+         animation-timing-function: cubic-bezier(.3, 0, .3, 1); }
+  24%  { opacity: 1; filter: blur(0); transform: translate(-50%, calc(-50vh + 100px)) scale(1);
+         animation-timing-function: cubic-bezier(.55, 0, .25, 1); }
+  100% { opacity: 1; filter: blur(0); transform: translate(-50%, 0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) { .intro .scroll-cue { animation: none; } }
+@keyframes bob { 50% { transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue svg { animation: none; } }
+.scroll-cue:focus-visible, a:focus-visible { outline: 2px solid var(--on-ink); outline-offset: 4px; border-radius: 8px; }
+
+/* 2 — thesis */
+.thesis .big, .thesis .small { font-family: "EB Garamond", Garamond, Georgia, serif; }
+.thesis .big {
+  font-size: clamp(1.9rem, 4.6vw, 66px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0;
+  text-wrap: balance;
+}
+.thesis .big em { font-style: italic; font-weight: 700; }
+.thesis .small {
+  margin: 2.2em 0 0;
+  font-size: clamp(1.05rem, 1.75vw, 25px);
+  font-weight: 400;
+  opacity: 0.85;
+  text-wrap: balance;
+}
+/* second sentence rises up from behind a mask instead of fading */
+.thesis { overflow: hidden; }
+/* second sentence glides up from the bottom of the screen as one line */
+.js .thesis .small {
+  opacity: 0;
+  transform: translateY(52vh);
+  transition: transform 2s cubic-bezier(.12, .8, .2, 1), opacity 0.8s ease-out;
+  transition-delay: var(--base, 0ms);
+}
+.js .thesis .small.in { opacity: 0.85; transform: none; }
+.js .thesis .small .w { opacity: 1; filter: none; transform: none; transition: none; }
+/* page 2: once both lines have settled, they drift by a pixel or so, never quite still */
+.thesis .big.drift   { animation: driftA 12s ease-in-out infinite; }
+.thesis .small.drift { animation: driftB 15s ease-in-out infinite; }
+@keyframes driftA {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(1.2px, -0.8px) rotate(0.06deg) scale(1.002); }
+  50% { transform: translate(-0.5px, -1.5px) rotate(-0.04deg) scale(1.001); }
+  75% { transform: translate(-1.3px, 0.4px) rotate(0.03deg) scale(0.999); }
+}
+@keyframes driftB {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30% { transform: translate(-1px, 0.9px) rotate(-0.05deg); }
+  60% { transform: translate(1.4px, -0.6px) rotate(0.04deg); }
+  85% { transform: translate(0.4px, 1.1px) rotate(0.02deg); }
+}
+@media (prefers-reduced-motion: reduce) { .thesis .big.drift, .thesis .small.drift { animation: none; } }
+.thesis .small > span:not(.w) { font-style: normal; font-weight: 700; }
+
+/* 3 — about */
+.about { align-items: start; }
+.about-inner { width: 100%; max-width: 1100px; display: grid; gap: 40px; justify-items: center; }
+.nav { justify-self: start; display: flex; flex-wrap: wrap; gap: 28px 44px; }
+.nav a {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--on-paper); text-decoration: none; font-size: .95rem;
+}
+.nav a:focus-visible { outline-color: var(--pink-deep); }
+.nav svg { width: 56px; height: 56px; transition: transform .3s ease; }
+.nav a:hover svg { transform: translateY(-4px) rotate(-4deg); }
+.portrait {
+  width: min(340px, 78vw);
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 20% 15%, #fff6 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 70%, #fff5 0 2px, transparent 3px),
+    linear-gradient(135deg, var(--pink-deep), var(--pink) 45%, #f7c2dd 70%, var(--pink-deep));
+  background-size: 23px 23px, 31px 31px, 100% 100%;
+}
+.portrait { animation: float 6s ease-in-out infinite; box-shadow: 0 24px 40px -24px rgba(0,0,0,.35); }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50% { transform: translateY(-10px) rotate(0.6deg); }
+}
+@media (prefers-reduced-motion: reduce) { .portrait { animation: none; } }
+.portrait .photo {
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, #e9e9e9, #bdbdbd);
+  display: grid; place-items: center;
+  color: #555; font-size: .85rem;
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.facts { display: grid; gap: 1.1em; font-size: clamp(.95rem, 1.5vw, 1.1rem); margin: 0; padding: 0; list-style: none; }
+.facts { font-weight: 300; }
+.facts a { color: inherit; font-weight: 500; text-decoration-color: var(--pink-deep); text-underline-offset: 3px; }
+
+.facts .spark { font-weight: 500; }
+
+/* sub-pages: how I write / how i see / where ive been */
+.subpage { position: relative; z-index: 1; }
+.subpage h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 6.5vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+}
+.subpage .sub { margin: 1.2em 0 0; font-weight: 300; opacity: 0.7; }
+.subpage .back {
+  position: absolute;
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  left: max(24px, env(safe-area-inset-left, 0px));
+  color: var(--on-ink); text-decoration: none; font-size: 0.85rem; font-weight: 300; opacity: 0.75;
+}
+.subpage .back:hover { opacity: 1; }
+
+/* seam between the black thesis screen and the cream about screen:
+   black melts through warm grey into cream, under dense fine film grain */
+:root {
+  --seam-grey: #3e3934;
+  --fine-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 0 1'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2.2' intercept='-0.6'/%3E%3CfeFuncG type='linear' slope='2.2' intercept='-0.6'/%3E%3CfeFuncB type='linear' slope='2.2' intercept='-0.6'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+.thesis > div, .thesis .scroll-cue { position: relative; z-index: 1; }
+.thesis .scroll-cue { position: absolute; }
+.thesis::before, .thesis::after,
+.about::before, .about::after {
+  content: ""; position: absolute; left: 0; right: 0; pointer-events: none; z-index: 0;
+}
+.thesis::before {
+  bottom: 0; height: 38vh;
+  background: linear-gradient(to bottom,
+    rgba(62,57,52,0) 0%, rgba(62,57,52,0.04) 20%, rgba(62,57,52,0.12) 38%,
+    rgba(62,57,52,0.26) 54%, rgba(62,57,52,0.44) 68%, rgba(62,57,52,0.64) 80%,
+    rgba(62,57,52,0.84) 91%, var(--seam-grey) 100%);
+}
+.thesis::after {
+  bottom: 0; height: 38vh;
+  background-image: var(--fine-grain);
+  animation: vibrate 0.24s steps(1) infinite;
+  mix-blend-mode: overlay; opacity: 0.85;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 10%, #000 75%);
+  mask-image: linear-gradient(to bottom, transparent 10%, #000 75%);
+}
+.about::before {
+  top: 0; height: 10vh;
+  background: linear-gradient(to bottom,
+    var(--seam-grey) 0%, rgba(109,102,95,0.92) 18%, rgba(155,148,139,0.75) 38%,
+    rgba(196,190,182,0.5) 58%, rgba(224,220,213,0.22) 80%, rgba(241,238,232,0) 100%);
+}
+.about::after {
+  top: 0; height: 10vh;
+  background-image: var(--fine-grain);
+  animation: vibrate 0.24s steps(1) infinite;
+  mix-blend-mode: overlay; opacity: 0.85;
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+}
+.about { padding-top: calc(10vh + 40px); }
+
+/* page 3 background: primed canvas with a black spray-paint gesture low across it */
+:root { --canvas: #f1eee8; }
+.light.about {
+  background-color: var(--canvas);
+  background-image:
+    var(--canvas-speckle, none),
+    repeating-linear-gradient(0deg, rgba(90, 80, 70, 0.018) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90, 80, 70, 0.014) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255, 255, 255, 0.35), transparent 70%);
+  background-size: 256px 256px, auto, auto, auto;
+  overflow: hidden;
+}
+.spray {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  width: 100%; height: auto; aspect-ratio: 1000 / 300; max-width: 100%;
+  transform: translateY(32%); overflow: visible; z-index: 0; pointer-events: none;
+}
+.facts li { text-shadow: 0 0 10px var(--canvas), 0 0 4px var(--canvas); }
+/* the two "about me" lines sit lower, as their own block */
+.facts-lower { margin-top: 37px; gap: 2em; font-size: 1rem; }
+
+/* icons pinned to the top-left corner of page 3 */
+.about > .nav {
+  position: absolute; z-index: 2;
+  top: calc(42px + env(safe-area-inset-top, 0px));
+  left: max(21px, env(safe-area-inset-left, 0px));
+  justify-self: auto;
+}
+@media (max-width: 1000px) { .about { padding-top: calc(10vh + 150px); } }
+
+/* the seam grain never sits still: tiny jumps make it shimmer */
+@keyframes vibrate {
+  0%   { background-position: 0 0; }
+  25%  { background-position: -2px 1px; }
+  50%  { background-position: 1px -2px; }
+  75%  { background-position: 2px 2px; }
+}
+@media (prefers-reduced-motion: reduce) { .thesis::after, .about::after { animation: none; } }
+.about-inner { position: relative; z-index: 1; }
+
+
+/* index: resume page, modeled on a gridded editorial CV */
+.resume {
+  position: relative; z-index: 1; min-height: 100svh; color: #5b5a58; text-align: left;
+  background: #f8f7f4;
+  padding-block: 0 96px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.resume .back { color: #1a1a1a; z-index: 2; }
+.cv { --rule: rgba(30, 30, 30, 0.1); --left: minmax(220px, 31%); max-width: 1180px; margin: 0 auto; padding-top: 72px; }
+.cv-row { display: grid; grid-template-columns: var(--left) 1fr; }
+.cv-left, .cv-right { min-width: 0; padding: 0 28px; }
+.cv-right { border-left: 1px solid var(--rule); }
+.cv-head { border-top: 1px solid var(--rule); }
+.cv-head > div { padding-top: 22px; padding-bottom: 30px; }
+.cv-head { border-bottom: 1px solid var(--rule); }
+.cv-name { margin: 0; font-family: "EB Garamond", Garamond, Georgia, serif; font-style: italic; font-weight: 400;
+  font-size: clamp(2.4rem, 4.6vw, 3.6rem); line-height: 1; letter-spacing: -0.02em; color: #1d1c1b; }
+.cv-title { margin: 6px 0 14px; font-size: 1.15rem; color: #1d1c1b; }
+.cv-title span { color: #a9a7a3; }
+.cv-contact { margin: 0; font-size: 1.05rem; line-height: 1.6; color: #6b6a67; }
+.cv-contact a { color: inherit; text-decoration-color: rgba(30,30,30,.25); text-underline-offset: 3px; }
+.cv-contact a:hover { color: #1d1c1b; }
+.cv-labels h3 { margin: 0; padding: 18px 0 14px; font-family: "EB Garamond", Garamond, Georgia, serif; font-weight: 400;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem); color: #2a2928; letter-spacing: -0.01em; }
+.cv-labels { border-bottom: 1px solid var(--rule); }
+.cv-body > div { padding-top: 28px; padding-bottom: 40px; }
+.mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; text-transform: uppercase; font-size: 0.86rem;
+  letter-spacing: 0.02em; color: #2a2928; margin: 0 0 6px; }
+.mono.dim { color: #9a9895; line-height: 1.5; }
+.cv p { line-height: 1.55; }
+.cv-skills { display: grid; gap: 34px; align-content: start; }
+.cv-skills p:not(.mono) { margin: 0; }
+.cv-jobs { display: grid; gap: 44px; }
+.job { display: grid; grid-template-columns: 190px 1fr; gap: 24px; }
+.job p:not(.mono) { margin: 0; max-width: 62ch; }
+.cv-label-row { border-bottom: 1px solid var(--rule); padding: 0 28px; margin-top: 18px; }
+.cv-label-row h3 { margin: 0; padding: 12px 0 10px; font-family: "EB Garamond", Garamond, Georgia, serif; font-weight: 400;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem); color: #2a2928; letter-spacing: -0.01em; }
+.job-row > div { padding-top: 16px; padding-bottom: 16px; }
+.job-row + .job-row { border-top: 1px solid rgba(30, 30, 30, 0.06); }
+.job-row .cv-right { border-left: 0; }
+.job-row .cv-right p:not(.mono) { margin: 0; max-width: 64ch; }
+.job-points { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; max-width: 66ch; }
+.job-points li { position: relative; padding-left: 16px; line-height: 1.55; }
+.job-points li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 1px; background: #a9a7a3; }
+
+.cv-skills-grid { display: grid; grid-template-columns: var(--left) 1fr; padding-top: 18px; }
+.cv-skills-grid > div { padding: 0 28px; }
+.cv-skills-grid p:not(.mono) { margin: 0; }
+@media (max-width: 760px) {
+  .cv-label-row { padding: 0 4px; }
+  .job-row > div { padding-top: 6px; padding-bottom: 6px; }
+  .job-row { padding-block: 14px; }
+  .cv-skills-grid { grid-template-columns: 1fr; gap: 24px; padding-top: 16px; }
+  .cv-skills-grid > div { padding: 0 4px; }
+}
+.cv-believe-label { border-top: 1px solid var(--rule); }
+.believe { border-bottom: 1px solid var(--rule); }
+.believe > div { padding-top: 20px; padding-bottom: 22px; }
+.believe .phrase { margin: 0; font-family: "EB Garamond", Garamond, Georgia, serif; font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  color: #4a4947; line-height: 1.1; }
+.believe .cv-right p { margin: 0; max-width: 70ch; }
+@media (max-width: 760px) {
+  .cv { padding-top: 64px; }
+  .cv-row { grid-template-columns: 1fr; }
+  .cv-right { border-left: 0; }
+  .cv-left, .cv-right { padding: 0 4px; }
+  .cv-head > div { padding-bottom: 18px; }
+  .cv-labels .cv-right:empty { display: none; }
+  .job { grid-template-columns: 1fr; gap: 6px; }
+  .believe > div { padding-top: 12px; padding-bottom: 12px; }
+}
+
+
+/* how I write: Substack article list */
+.writing .writing-inner { width: 100%; max-width: 760px; display: grid; gap: 40px; justify-items: center; }
+.articles { list-style: none; margin: 0; padding: 0; width: 100%; border-top: 1px solid rgba(255,255,255,0.12); }
+.articles li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px;
+  padding: 20px 4px; border-bottom: 1px solid rgba(255,255,255,0.12); text-align: left; }
+.articles a { color: var(--on-ink); text-decoration: none; font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.25; min-width: 0;
+  background-image: linear-gradient(var(--pink), var(--pink)); background-size: 0 1px; background-repeat: no-repeat;
+  background-position: 0 100%; transition: background-size .35s ease, color .35s ease; }
+.articles a:hover, .articles a:focus-visible { color: #fff; background-size: 100% 1px; }
+.articles time { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 0.78rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5); white-space: nowrap; }
+.writing .more { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; font-weight: 300; }
+.writing .more:hover { color: var(--pink); }
+
+
+/* how i see: video grid */
+.seeing { align-items: start; padding-top: 96px; }
+.seeing-inner { width: 100%; max-width: 1180px; display: grid; gap: 48px; justify-items: center; }
+.clips { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 32px; text-align: left; }
+.clip { margin: 0; min-width: 0; display: grid; gap: 14px; }
+.clip video { width: 100%; max-width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #000; display: block;
+  filter: brightness(0.82); transition: filter .35s ease; }
+.clip:hover video, .clip video:focus-visible { filter: brightness(1); }
+.clip figcaption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
+.clip-title { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; text-transform: uppercase; font-size: 0.82rem;
+  letter-spacing: 0.04em; color: var(--on-ink);
+  background-image: linear-gradient(var(--pink), var(--pink)); background-size: 0 1px; background-repeat: no-repeat;
+  background-position: 0 100%; padding-bottom: 3px; transition: background-size .35s ease; }
+.clip:hover .clip-title { background-size: 100% 1px; }
+.clip-meta { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 0.75rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.5); }
+@media (max-width: 760px) { .clips { grid-template-columns: 1fr; gap: 36px; } .seeing { padding-top: 72px; } }
+/* portrait: the photo carries its own pink frame */
+.portrait { padding: 0; background: none; }
+
+/* 4 — spark */
+.spark-mark { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.soon .spark-mark .star { width: 64px; height: 64px; }
+.spark-word {
+  margin: 0;
+  font-size: clamp(3rem, 11vw, 9rem);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.soon { overflow: hidden; }
+.soon canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.soon .star { position: relative; width: 120px; height: 120px; filter: drop-shadow(0 0 18px rgba(79,107,255,.6)); }
+.soon .label {
+  position: absolute; left: 0; right: 0;
+  bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+  font-size: 1.05rem;
+}
+
+@media (max-width: 560px) {
+  .nav { justify-self: center; gap: 24px 28px; }
+  .nav svg { width: 46px; height: 46px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  .js .reveal, .js .reveal.pending { transition: none; filter: none; opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="grain" aria-hidden="true" hidden></div>
+<canvas id="dissolve" aria-hidden="true" hidden></canvas>
+<div id="scroll-grain" aria-hidden="true"></div>
+
+<main>
+  <section class="slide dark intro" aria-label="intro">
+    <h1 class="words" style="--base:500ms">hello, i&#8217;m nosa.</h1>
+    <a class="scroll-cue" href="#what">
+      <svg width="14" height="40" viewBox="0 0 14 40" fill="none" aria-hidden="true"><path d="M7 1v36M1 31l6 7 6-7" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      scroll down
+    </a>
+  </section>
+
+  <section class="slide dark thesis" id="what" aria-label="what I do">
+    <div>
+      <p class="big words">I build things at the intersection of<br><em>technology</em> + <em>creativity</em>.</p>
+      <p class="small words" style="--base:2000ms">and use <span>storytelling</span> to make it all feel human.</p>
+    </div>
+    <a class="scroll-cue" href="#about" aria-label="keep scrolling">
+      <svg width="14" height="40" viewBox="0 0 14 40" fill="none" aria-hidden="true"><path d="M7 1v36M1 31l6 7 6-7" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <section class="slide light about" id="about" aria-label="about">
+    <svg class="spray" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <defs>
+        <filter id="overspray" x="-20%" y="-30%" width="140%" height="160%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="soft"/>
+          <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="1" seed="4" result="noise"/>
+          <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.6 0 0 0 -1.75" result="dots"/>
+          <feComposite in="soft" in2="dots" operator="in"/>
+        </filter>
+        <filter id="rough" x="-10%" y="-20%" width="120%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="9" result="warp"/>
+          <feDisplacementMap in="SourceGraphic" in2="warp" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+          <feGaussianBlur in="d" stdDeviation="0.9"/>
+        </filter>
+      </defs>
+      <g fill="none" stroke="#7d766f" stroke-linecap="round" stroke-linejoin="round">
+        <path filter="url(#overspray)" stroke-width="78" opacity="0.5"
+          d="M -40 220 C 40 170, 120 140, 175 165 C 225 188, 215 250, 265 258 C 330 268, 360 95, 470 88 C 575 80, 600 150, 640 230 C 670 290, 700 330, 720 380"/>
+        <path filter="url(#overspray)" stroke-width="60" opacity="0.45"
+          d="M 905 380 C 925 300, 950 235, 1040 195"/>
+        <path filter="url(#rough)" stroke-width="40"
+          d="M -40 220 C 40 170, 120 140, 175 165 C 225 188, 215 250, 265 258 C 330 268, 360 95, 470 88 C 575 80, 600 150, 640 230 C 670 290, 700 330, 720 380"/>
+        <path filter="url(#rough)" stroke-width="32"
+          d="M 905 380 C 925 300, 950 235, 1040 195"/>
+      </g>
+    </svg>
+    <nav class="nav reveal" aria-label="sections">
+      <a href="#write">
+        <svg viewBox="0 0 56 56" fill="none" stroke="#e77fb6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="8" y="9" width="32" height="38" rx="2"/><path d="M14 18h16M14 25h12M14 32h8"/>
+          <path d="M44 12l5 5-17 17-7 2 2-7z"/><path d="M41 15l5 5"/>
+        </svg>
+        how i think
+      </a>
+      <a href="#see">
+        <svg viewBox="0 0 56 56" fill="none" stroke="#e77fb6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="16" width="32" height="24" rx="5"/><path d="M37 24l13-7v22l-13-7z"/>
+        </svg>
+        how i see
+      </a>
+      <a href="#index">
+        <svg viewBox="0 0 56 56" fill="none" stroke="#e77fb6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="10" y="8" width="34" height="40" rx="3"/>
+          <circle cx="18" cy="19" r="1.6"/><path d="M24 19h13"/>
+          <circle cx="18" cy="28" r="1.6"/><path d="M24 28h13"/>
+          <circle cx="18" cy="37" r="1.6"/><path d="M24 37h9"/>
+          <path d="M44 14h3v34a3 3 0 0 1-3 3H16"/>
+        </svg>
+        index
+      </a>
+    </nav>
+    <div class="about-inner">
+
+      <div class="portrait reveal d1">
+        <!-- swap the placeholder for: <img src="nosa.jpg" alt="Nosa Omorogbe"> -->
+        <img src="portrait.jpg" alt="Portrait of Nosa Omorogbe" width="800" height="800">
+      </div>
+
+      <ul class="facts">
+        <li class="words" style="--base:200ms">currently studying sociology + cs @ columbia</li>
+        <li class="words" style="--base:500ms">making videos, writing, and discovering self</li>
+        <li class="words" style="--base:800ms">building <a href="#spark" id="spark-link">spark</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<section class="slide dark subpage writing" id="page-write" aria-label="how i think" hidden>
+  <a class="back" href="#about">&larr; back</a>
+  <div class="writing-inner">
+    <h2 class="words">how i think</h2>
+    <!-- articles: newest first. Once the site is hosted, this list is rebuilt automatically from kingzeme.substack.com/feed -->
+    <!-- ARTICLES:START -->
+    <ol class="articles" id="articles">
+      <li><a href="https://kingzeme.substack.com/p/i-thought-i-knew-who-i-was" target="_blank" rel="noopener">I thought I knew who I was.</a><time datetime="2026-10-19">Oct 19, 2026</time></li>
+      <li><a href="https://kingzeme.substack.com/p/forget-about-the-future-for-now" target="_blank" rel="noopener">forget about the future! (for now)</a><time datetime="2026-04-28">Apr 28, 2026</time></li>
+    </ol>
+    <!-- ARTICLES:END -->
+    <a class="more" href="https://kingzeme.substack.com" target="_blank" rel="noopener">read more on substack &rarr;</a>
+  </div>
+</section>
+<section class="slide dark subpage seeing" id="page-see" aria-label="how i see" hidden>
+  <a class="back" href="#about">&larr; back</a>
+  <div class="seeing-inner">
+    <h2 class="words">how i see</h2>
+    <div class="clips">
+      <figure class="clip">
+        <video src="videos/team-adventure.mp4" poster="videos/team-adventure.jpg" controls preload="none" playsinline></video>
+        <figcaption><span class="clip-title">A team adventure</span><span class="clip-meta">3:54</span></figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/ophsides.mp4" poster="videos/ophsides.jpg" controls preload="none" playsinline></video>
+        <figcaption><span class="clip-title">Ophsides</span><span class="clip-meta">5:24</span></figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/walk-in-riverside.mp4" poster="videos/walk-in-riverside.jpg" controls preload="none" playsinline></video>
+        <figcaption><span class="clip-title">A walk in riverside</span><span class="clip-meta">2:37</span></figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/stills.mp4" poster="videos/stills.jpg" controls preload="none" playsinline></video>
+        <figcaption><span class="clip-title">Stills</span><span class="clip-meta">0:59</span></figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/warm-sundays.mp4" poster="videos/warm-sundays.jpg" controls preload="none" playsinline></video>
+        <figcaption><span class="clip-title">Warm Sundays with Friends</span><span class="clip-meta">1:16</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<section class="slide dark subpage" id="page-spark" aria-label="spark" hidden>
+  <a class="back" href="#about">&larr; back</a>
+  <div>
+    <h2 class="words">spark</h2>
+    <p class="sub words" style="--base:900ms">coming soon.</p>
+  </div>
+</section>
+<section class="subpage resume" id="page-index" aria-label="index" hidden>
+  <a class="back" href="#about">&larr; back</a>
+  <div class="cv">
+    <header class="cv-row cv-head">
+      <div class="cv-left"><h2 class="cv-name words">Nosa Omorogbe</h2></div>
+      <div class="cv-right">
+        <p class="cv-title">Product Design <span>+ Strategy</span></p>
+        <p class="cv-contact"><a href="mailto:nfo2001@columbia.edu">nfo2001@columbia.edu</a><br><a href="https://www.linkedin.com/in/nosazeme-faith-omorogbe-053b83337/" id="linkedin-link" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+    </header>
+
+    <div class="cv-label-row"><h3>Experience</h3></div>
+    <article class="cv-row job-row">
+      <div class="cv-left job-meta"><p class="mono">Spark</p><p class="mono dim">Venture</p></div>
+      <div class="cv-right"><p class="mono">Founder</p>
+      <ul class="job-points"><li>Sole founder, designing and building a product that helps students discover their passions and connect them to careers</li></ul></div>
+    </article>
+    <article class="cv-row job-row">
+      <div class="cv-left job-meta"><p class="mono">The WIE Suite</p><p class="mono dim">June &ndash; July 2026<br>Hybrid</p></div>
+      <div class="cv-right"><p class="mono">Product + Strategy Intern</p>
+      <ul class="job-points"><li>Built AI automations with HubSpot, OpenAI, Make.com and Claude for a weekly leadership report and a member matching system</li><li>Led a member engagement analysis that drove engagement up 30% and lightened the head of community&rsquo;s workload</li></ul></div>
+    </article>
+    <article class="cv-row job-row">
+      <div class="cv-left job-meta"><p class="mono">ZACAO</p><p class="mono dim">July &ndash; August 2026<br>New York, NY</p></div>
+      <div class="cv-right"><p class="mono">Marketing + Operations Intern</p>
+      <ul class="job-points"><li>Lead brand storytelling for a premium Ghanaian tree-to-bar chocolate company across video, social and email, growing social media engagement by 17.34%</li><li>Led a full visual rebrand of ZACAO, building moodboards and an imagery direction that repositioned the product as a premium, design-forward chocolate company</li><li>Scripted founder-led video content and launched serialized formats for repeatable, consistent content across five brand pillars</li></ul></div>
+    </article>
+    <article class="cv-row job-row">
+      <div class="cv-left job-meta"><p class="mono">Albany County</p><p class="mono dim">June &ndash; August 2025<br>Albany, NY</p></div>
+      <div class="cv-right"><p class="mono">Product Design Intern</p>
+      <ul class="job-points"><li>Designed and built an inventory management system for county operations using Microsoft Power Apps</li><li>Led UI design for the system from scratch, prioritizing an intuitive, user-friendly experience for over 100 county staff</li><li>Cleaned and organized 2,000+ records in Excel to ensure data accuracy and consistency</li></ul></div>
+    </article>
+    <article class="cv-row job-row">
+      <div class="cv-left job-meta"><p class="mono">Athlete to Athlete</p><p class="mono dim">May 2025 &ndash; 2026<br>Remote</p></div>
+      <div class="cv-right"><p class="mono">Mentor</p>
+      <ul class="job-points"><li>Mentored young soccer players working toward playing in college</li></ul></div>
+    </article>
+
+    <div class="cv-label-row"><h3>Skills</h3></div>
+    <div class="cv-skills-grid">
+      <div><p class="mono">Technical</p><p>Figma<br>Claude<br>OpenAI API<br>DaVinci Resolve<br>Canva<br>Make.com, HubSpot<br>Java<br>Microsoft Power Apps<br>Excel / Google Sheets</p></div>
+      <div><p class="mono">Creative</p><p>Brand storytelling<br>Video scripting + editing<br>Content strategy<br>Moodboards + art direction</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var TAU = Math.PI * 2;
+
+  function fit(c) {
+    var r = c.getBoundingClientRect();
+    c.width = Math.max(1, r.width * DPR); c.height = Math.max(1, r.height * DPR);
+    var ctx = c.getContext('2d'); ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    return { ctx: ctx, w: r.width, h: r.height };
+  }
+  // soft out-of-focus dot, like the blobs in the reference
+  function blob(ctx, x, y, r, a) {
+    var g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, 'rgba(255,255,255,' + a + ')');
+    g.addColorStop(0.45, 'rgba(255,255,255,' + (a * 0.35) + ')');
+    g.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
+  }
+  // run a draw function only while its canvas is on screen
+  function animate(el, draw) {
+    var on = false;
+    function loop(t) { draw(t); if (on) requestAnimationFrame(loop); }
+    draw(0);
+    if (reduce || !hasIO) return;
+    new IntersectionObserver(function (e) {
+      var v = e[0].isIntersecting;
+      if (v && !on) { on = true; requestAnimationFrame(loop); }
+      if (!v) on = false;
+    }).observe(el);
+  }
+
+  /* ---------- text: haze → focus ---------- */
+  if (!reduce && hasIO) {
+    document.documentElement.classList.add('js');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.remove('pending'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pending'); io.observe(el); }
+    });
+
+    function split(node, counter) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var s = document.createElement('span');
+            s.className = 'w'; s.textContent = part;
+            s.style.setProperty('--i', counter.n++);
+            frag.appendChild(s);
+          });
+          n.parentNode.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+          split(n, counter);
+        }
+      });
+    }
+    var wio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); wio.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.words').forEach(function (el) {
+      el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+      split(el, { n: 0 });
+      wio.observe(el);
+    });
+  }
+
+  /* ambient light + orb removed: only the arrow and the photo move */
+  if (false) {
+  var amb = document.getElementById('ambient'), A, motes = [];
+  function ambSize() {
+    A = fit(amb); motes = [];
+    var n = Math.round(A.w * A.h / 26000) + 14;
+    for (var i = 0; i < n; i++) motes.push({
+      x: Math.random() * A.w, y: Math.random() * A.h,
+      r: 6 + Math.random() * 26, a: 0.03 + Math.random() * 0.09,
+      vx: (Math.random() - .5) * 0.12, vy: -0.05 - Math.random() * 0.15, p: Math.random() * TAU
+    });
+  }
+  function ambDraw(t) {
+    var c = A.ctx; c.clearRect(0, 0, A.w, A.h);
+    motes.forEach(function (m) {
+      if (!reduce) {
+        m.x += m.vx + Math.sin(t * 0.0004 + m.p) * 0.15; m.y += m.vy;
+        if (m.y < -40) { m.y = A.h + 40; m.x = Math.random() * A.w; }
+        if (m.x < -40) m.x = A.w + 40; if (m.x > A.w + 40) m.x = -40;
+      }
+      blob(c, m.x, m.y, m.r, m.a * (0.6 + 0.4 * Math.sin(t * 0.0015 + m.p)));
+    });
+  }
+
+
+  /* ---------- the swirling orb behind the name ---------- */
+  var orb = document.getElementById('orb'), O, pts = [];
+  function orbSize() {
+    O = fit(orb); pts = [];
+    for (var i = 0; i < 110; i++) {
+      var u = Math.random() * 2 - 1, th = Math.random() * TAU;
+      pts.push({ u: u, th: th, w: 0.6 + Math.random() * 0.8, p: Math.random() * TAU, s: 0.6 + Math.random() });
+    }
+  }
+  function orbDraw(t) {
+    var c = O.ctx, cx = O.w / 2, cy = O.h / 2, R = O.w * 0.34;
+    c.clearRect(0, 0, O.w, O.h);
+    c.globalCompositeOperation = 'lighter';
+    pts.forEach(function (q) {
+      var th = q.th + t * 0.00018 * q.w;
+      var rr = Math.sqrt(1 - q.u * q.u);
+      var wob = 1 + 0.08 * Math.sin(t * 0.0012 * q.s + q.p);
+      var x = Math.cos(th) * rr * wob, z = Math.sin(th) * rr, y = q.u * wob;
+      // tilt
+      var y2 = y * 0.92 - z * 0.38, z2 = y * 0.38 + z * 0.92;
+      var depth = (z2 + 1) / 2;
+      var flick = 0.55 + 0.45 * Math.sin(t * 0.004 * q.s + q.p * 3);
+      blob(c, cx + x * R, cy + y2 * R, (5 + depth * 16) * q.s, (0.05 + depth * 0.22) * flick);
+    });
+    c.globalCompositeOperation = 'source-over';
+  }
+  }
+
+  /* ---------- floating, fizzing white arrow ---------- */
+  document.querySelectorAll('.fizz-arrow').forEach(function (cv) {
+    var S = fit(cv), dots = [], sparks = [];
+    function path() {
+      dots = [];
+      var cx = S.w / 2, top = 10, tip = S.h - 22, head = 15;
+      function line(x1, y1, x2, y2, n) {
+        for (var i = 0; i <= n; i++) {
+          var k = i / n;
+          dots.push({ x: x1 + (x2 - x1) * k, y: y1 + (y2 - y1) * k, p: Math.random() * TAU, f: 0.5 + Math.random() * 1.5, fade: k });
+        }
+      }
+      line(cx, top, cx, tip, 34);                       // shaft, fades in from the top
+      line(cx - head, tip - head, cx, tip, 12);         // left wing
+      line(cx + head, tip - head, cx, tip, 12);         // right wing
+      dots.forEach(function (d, i) { if (i > 34) d.fade = 1; });
+    }
+    path();
+    function draw(t) {
+      var c = S.ctx; c.clearRect(0, 0, S.w, S.h);
+      var bob = reduce ? 0 : Math.sin(t * 0.0022) * 5;
+      c.save(); c.translate(0, bob - 3);
+      c.globalCompositeOperation = 'lighter';
+      dots.forEach(function (d) {
+        var jx = reduce ? 0 : Math.sin(t * 0.02 * d.f + d.p) * 0.9;
+        var jy = reduce ? 0 : Math.cos(t * 0.017 * d.f + d.p) * 0.9;
+        var a = (0.25 + 0.75 * d.fade) * (0.55 + 0.45 * Math.sin(t * 0.012 * d.f + d.p));
+        blob(c, d.x + jx, d.y + jy, 3.2, a);
+        c.fillStyle = 'rgba(255,255,255,' + Math.min(1, a + 0.15) + ')';
+        c.fillRect(d.x + jx - 0.6, d.y + jy - 0.6, 1.2, 1.2);
+      });
+      // fizz: tiny sparks that peel off and drift away
+      if (!reduce && Math.random() < 0.45) {
+        var d = dots[(Math.random() * dots.length) | 0];
+        sparks.push({ x: d.x, y: d.y, vx: (Math.random() - .5) * 0.7, vy: -0.2 - Math.random() * 0.6, life: 1 });
+      }
+      sparks = sparks.filter(function (s) {
+        s.x += s.vx; s.y += s.vy; s.life -= 0.022;
+        if (s.life <= 0) return false;
+        blob(c, s.x, s.y, 2.2, s.life * 0.8);
+        return true;
+      });
+      c.restore();
+    }
+    animate(cv, draw);
+  });
+
+
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () {}, 150);
+  });
+
+  /* ---------- analog grain tile for the black screens (random per pixel, no visible pattern) ---------- */
+  (function () {
+    try {
+      function tile(strength) {
+        var g = document.createElement('canvas'); g.width = g.height = 256;
+        var x = g.getContext('2d'), img = x.createImageData(256, 256), d = img.data;
+        for (var i = 0; i < d.length; i += 4) {
+          var r = Math.random();
+          d[i] = 248; d[i + 1] = 240; d[i + 2] = 228;
+          d[i + 3] = Math.round(Math.pow(r, 3.2) * 70 * strength);
+        }
+        x.putImageData(img, 0, 0);
+        return 'url(' + g.toDataURL('image/png') + ')';
+      }
+      document.documentElement.style.setProperty('--dark-grain', tile(1));
+      document.documentElement.style.setProperty('--dark-grain-soft', tile(0.6)); // intro: 40% less grain
+      // dark flecks for the page 3 canvas
+      var c2 = document.createElement('canvas'); c2.width = c2.height = 256;
+      var x2 = c2.getContext('2d'), im2 = x2.createImageData(256, 256), d2 = im2.data;
+      for (var j = 0; j < d2.length; j += 4) {
+        d2[j] = 52; d2[j + 1] = 46; d2[j + 2] = 40;
+        d2[j + 3] = Math.round(Math.pow(Math.random(), 10) * 38);
+      }
+      x2.putImageData(im2, 0, 0);
+      document.documentElement.style.setProperty('--canvas-speckle', 'url(' + c2.toDataURL('image/png') + ')');
+    } catch (e) {}
+  })();
+
+  /* ---------- page 2 -> page 3: fuzz out, particles blur across, fuzz in ---------- */
+  (function () {
+    var dz = document.getElementById('dissolve');
+    var what = document.getElementById('what');
+    var about = document.getElementById('about');
+    var whatInner = what.querySelector('div');
+    var aboutInner = about.querySelector('.about-inner');
+    if (reduce) { dz.hidden = true; return; }
+    var D, parts = [], sprites = {};
+    function makeSprite(rgb) {
+      var s = document.createElement('canvas'); s.width = s.height = 128;
+      var g = s.getContext('2d'), gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+      gr.addColorStop(0, 'rgba(' + rgb + ',1)');
+      gr.addColorStop(0.5, 'rgba(' + rgb + ',0.55)');
+      gr.addColorStop(1, 'rgba(' + rgb + ',0)');
+      g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+      return s;
+    }
+    sprites.cream = makeSprite('245,243,239');
+    sprites.white = makeSprite('255,255,255');
+    sprites.pink = makeSprite('244,166,207');
+    function setup() {
+      D = fit(dz); parts = [];
+      var n = Math.round(D.w * D.h / 5200) + 60;
+      for (var i = 0; i < n; i++) {
+        var roll = Math.random();
+        parts.push({
+          x: Math.random() * D.w, y: Math.random() * D.h * 1.3,
+          r: 18 + Math.pow(Math.random(), 1.8) * 120,
+          th: Math.random(), drift: 0.2 + Math.random() * 0.6,
+          ph: Math.random() * TAU,
+          s: roll < 0.06 ? sprites.pink : roll < 0.32 ? sprites.white : sprites.cream
+        });
+      }
+    }
+    function render() {
+      ticking = false;
+      if (document.querySelector('main').hidden) { D.ctx.clearRect(0, 0, D.w, D.h); return; }
+      var vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (window.scrollY - what.offsetTop) / vh));
+      var env = Math.sin(Math.PI * p);
+      // the text fuzzes out as it leaves, the about page fuzzes in as it arrives
+      whatInner.style.filter = p > 0 ? 'blur(' + (p * 18).toFixed(1) + 'px)' : '';
+      whatInner.style.opacity = (1 - p * 0.9).toFixed(3);
+      aboutInner.style.filter = p < 1 ? 'blur(' + ((1 - p) * 18).toFixed(1) + 'px)' : '';
+      return; // particle overlay retired: the seam between the screens is now a grainy gradient (CSS)
+      var c = D.ctx; c.clearRect(0, 0, D.w, D.h);
+      if (env < 0.005) return;
+      parts.forEach(function (q) {
+        var a = Math.min(1, Math.max(0, (env - q.th * 0.7) / 0.3));
+        if (a <= 0) return;
+        var y = q.y - p * q.drift * vh * 0.6;
+        var x = q.x + Math.sin(p * 5 + q.ph) * 24;
+        var size = q.r * 2 * (0.5 + 0.5 * a);
+        c.globalAlpha = a * 0.92;
+        c.drawImage(q.s, x - size / 2, y - size / 2, size, size);
+      });
+      c.globalAlpha = 1;
+    }
+    var ticking = false;
+    function request() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
+    setup(); render();
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', function () { setup(); request(); });
+    window.addEventListener('hashchange', request);
+  })();
+
+  /* ---------- page 2 drift: starts only after line 2 has finished rising in ---------- */
+  (function () {
+    if (reduce || !hasIO) return;
+    var small = document.querySelector('.thesis .small'), big = document.querySelector('.thesis .big');
+    // line 2 begins 1.8s after it is revealed; its last word lands about 1.5s later
+    var obs = new MutationObserver(function () {
+      if (!small.classList.contains('in')) return;
+      obs.disconnect();
+      setTimeout(function () { big.classList.add('drift'); small.classList.add('drift'); }, 4200);
+    });
+    obs.observe(small, { attributes: true, attributeFilter: ['class'] });
+    // line 2 starts below the screen, so it can't be spotted there: start it when line 1 is revealed
+    var bigObs = new MutationObserver(function () {
+      if (big.classList.contains('in')) { bigObs.disconnect(); small.classList.add('in'); }
+    });
+    bigObs.observe(big, { attributes: true, attributeFilter: ['class'] });
+  })();
+
+  /* ---------- grain fades in from page 1 to page 2, out again into page 3 ---------- */
+  (function () {
+    var sg = document.getElementById('scroll-grain'), ticking = false;
+    function update() {
+      ticking = false;
+      if (document.querySelector('main').hidden) { sg.style.opacity = 0; return; }
+      var p = window.scrollY / window.innerHeight;
+      var o = p <= 1 ? p : Math.max(0, 2 - p);
+      sg.style.opacity = Math.max(0, Math.min(1, o)).toFixed(3);
+    }
+    function req() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', req, { passive: true });
+    window.addEventListener('resize', req);
+    window.addEventListener('hashchange', req);
+    update();
+  })();
+
+  /* ---------- simple page switching: #write, #see, #been ---------- */
+  var main = document.querySelector('main');
+  var pages = { write: 'page-write', see: 'page-see', index: 'page-index', spark: 'page-spark' };
+  function route(forced) {
+    var key = typeof forced === 'string' ? forced : location.hash.slice(1);
+    var target = pages[key];
+    Object.keys(pages).forEach(function (k) { document.getElementById(pages[k]).hidden = pages[k] !== target; });
+    main.hidden = !!target;
+    if (target) { window.scrollTo(0, 0); }
+    else if (key) { var el = document.getElementById(key); if (el) el.scrollIntoView(); }
+  }
+  window.addEventListener('hashchange', function () { route(); });
+  // open pages on click directly, so they work even where the viewer doesn't report hash changes
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var key = a.getAttribute('href').slice(1);
+    if (!pages[key] && key !== 'about') return;
+    e.preventDefault();
+    try { history.replaceState(null, '', '#' + key); } catch (err) {}
+    route(key);
+  });
+  route();
+})();
+</script>
+
+</body>
+</html>
